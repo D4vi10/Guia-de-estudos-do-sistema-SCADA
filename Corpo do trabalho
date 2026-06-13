@@ -1,0 +1,231 @@
+1 INTRODUÇÃO 
+
+1.1 Contextualização Do Sistema SCADA 
+
+O sistema SCADA (Supervisory Control and Data Acquisition - Supervisão, Controle e Aquisição de Dados em português) é considerado o backbone (estrutura principal de sustentação e comunicação de um sistema) das operações
+industriais modernas, permitindo o monitoramento e controle em tempo real de processos críticos. Trata-se de uma categoria de software e hardware projetada para monitorar, controlar e coletar dados de processos
+industriais e de infraestrutura em tempo real. Eles são cruciais para a gestão de infraestruturas vitais como energia, água e manufatura, permitindo o monitoramento e controle em tempo real de processos industriais
+complexos. Estes garantem a eficiência operacional através da supervisão contínua, automação de respostas e armazenamento de dados históricos para auditorias. A tomada de decisões baseada em dados é aprimorada pela
+análise preditiva, que identifica padrões para prevenir falhas e otimizar recursos, resultando em redução de custos operacionais e maior confiabilidade dos sistemas (PERES, 2025). 
+
+Além disso, a sua arquitetura é composta por elementos de hardware e software que são divididos entre níveis funcionais que operam entre si. Sendo eles: 
+
+Nível 0 e 1: No nível 0 se encontra os sensores e atuadores. Os sensores medem as variáveis físicas do ambiente enquanto os atuadores executam ações com base nessas variáveis. O nível 1 se destaca pelos dispositivos
+que monitoram o nível 0. O dispositivo fundamental para essa camada são as Unidades Terminais Remotas (RTU's) na qual são dispositivos eletrônicos que coletam dados dos sensores em lugares remotos e os transmitem
+para o sistema central, sendo particularmente eficazes em grandes extensões geográficas (CAST4IT, 2024) como em oleodutos e petrolíferas offshore (uma empresa que realiza a prospecção, perfuração e extração de petróleo
+e gás natural em alto-mar). E complementarmente existe também os CLP's (Controladores Lógicos Programáveis), microcontroladores industriais robustos, amplamente utilizados para o controle direto de máquinas em ambientes
+de fábrica por conta da sua alta velocidade de processamento e confiabilidade; 
+
+Nível 3: Esse nível compõem o servidor SCADA na qual ele atua como o "cérebro" do sistema. Este executa o software SCADA que gerencia o banco de dados e coordena a comunicação com todos os dispositivos de campo, e através
+de uma Interface Homem-Máquina (IHM) o operador interage com o sistema através de apresentações gráficas que indicam dados como vazão, pressão, temperatura, velocidade e afins para facilitar a compreensão do processo
+industrial e a tomada de decisão. Ademais, a rede de comunicação é um aspecto vital para o sistema SCADA onde é composta por cabos, switches (dispositivo que conecta computadores e outros equipamentos.) e modems, que
+interconecta todos os componentes do sistema, empregando protocolos específicos como Modbus, DNP3, OPC ou tecnologias modernas baseadas em TCP/IP (LUCAS, 2025); 
+
+Nível 3: E por fim, em relação a arquitetura do sistema SCADA, no nível 3 além da questão de relatório com base em KPI (Key Performance Indicator – Indicador-Chave de Desempenho), análise de dados em nuvem e gestão com
+base em ERP (Enterprise Resource Planning - Planejamento de Recursos Empresariais), destaca-se o "Historiador de Dados" (KPMG, 2021). Diferentemente de um banco de dados relacional tradicional, o "Historiador de Dados"
+é um software especializado projetado para coletar, armazenar e recuperar grandes volumes de dados de séries temporais gerados por equipamentos industriais e sensores. Esta solução otimiza o armazenamento e a recuperação
+de dados com timestamp (é uma marcação digital de data e hora de alta precisão anexada a cada dado coletado de sensores, PLC's, RTU's ou sistemas SCADA em um ambiente industrial.), sendo crucial para análises de
+tendências, auditorias, otimização de processos e relatórios de conformidade. 
+
+Historicamente, os sistemas SCADA operavam em ambientes chamados air-gapped (uma medida de segurança cibernética que isola fisicamente um computador ou uma rede de qualquer outra que não seja segura (GUIDEPOINT, 2026)),
+utilizando protocolos proprietários e redes físicas separadas da internet e das infraestruturas corporativas. Contudo, a necessidade de eficiência operacional e análise de dados em tempo real alavancou a evolução desses
+sistemas para ambientes conectados utilizando o protocolo IP, promovendo uma integração entre a Tecnologia da Informação (TI) e a Tecnologia Operacional (TO); e essa convergência entre TI e TO, embora sendo essencial para
+a transformação digital e otimização de processos, trouxe consigo uma superfície de ataque possibilitando acessos não autorizados, manipulação de dados ou até mesmo paralisação das infraestruturas críticas (INDUSTRIAL CYBER, 2026). 
+
+1.2 Protocolos Legados E A Ausência De Criptografia 
+
+Os protocolos industriais legados, na qual são padrões de comunicação utilizados no contexto do sistema SCADA, foram desenvolvidos nas décadas de 1970 e 1980 para permitir a troca de dados entre dispositivos de automação como
+CLP's e sensores. Alguns exemplos clássicos de protocolos industriais legados incluem o Modbus, Profibus, DNP3, DeviceNet, e neste período o foco era principalmente operacional: garantir que as comunicações no ambiente de
+fábrica fossem robustas, confiáveis, eficientes e alta disponibilidade. Como produto dessa comunicação, resultou na ausência de medidas de segurança integradas eficientes para os protocolos industriais. 
+
+Além disso, a ausência de mecanismos de segurança não foi um erro de projeto, mas sim uma consequência do contexto tecnológico e operacional da época. E dois dos principais motivos dessa ausência são: 
+
+Isolamentos físicos (air-gap): Pelo fato das redes industriais não serem conectadas a redes corporativas ou à internet no início do desenvolvimento dos protocolos industriais, acreditava-se que o acesso físico restrito nas
+instalações era proteção suficiente. Um conceito conhecido como "segurança por obscuridade"; 
+
+Limitações de hardware: Os recursos de hardware (processamento, memória, largura de banda e afins) dos dispositivos de campo na década de 70 e 80 tinha um poder computacional extremamente limitado. Ao implementar algoritmos
+de segurança como a criptografia consumiria recursos valiosos de memória e processamento, impactando no desempenho em tempo real das máquinas; 
+
+A transição dos protocolos legados como o Modbus, DNP3 e a IEC 60870-5-104 (Protocolo de comunicação padrão da indústria elétrica, utilizado para telecontrole, automação de subestações e redes inteligentes) na qual foram
+desenvolvidos em uma era de isolamento operacional trouxe à tona vulnerabilidades que as infraestruturas críticas estão sujeitas dado a gama de ataques que elas estão expostas com poucas medidas de segurança integradas. E
+diante dessa vulnerabilidade crescente, a criptografia emerge como um mecanismo de segurança indispensável.  
+
+1.3 Fundamentação Histórica dos Ataques à Infraestruturas Críticas  
+
+1.3.1 Ataques "pré-Stuxnet" 
+
+A segurança das infraestruturas críticas foi historicamente negligenciada dentro do pretexto da "segurança por obscuridade" e do isolamento físico das redes operacionais. E antes da emergência do Stuxnet em 2010; um ataque
+altamente complexo que teve como alvo a usina de enriquecimento de urânio em Natanz no Irã. Este malware manipulou os dados exibidos pelo IHM e em paralelo aumentava o giro das centrífugas de urânio causando a quebra de algumas
+centrífugas (ANDERSON, 2021), que marcou o início da era das armas cibernéticas de alta sofisticação, os incidentes em sistemas de controle industrial eram frequentemente subestimados, sendo muitas vezes atribuídos a falhas
+mecânicas ou erros humanos. Porém, um dos primeiros relatos de ataques às infraestruturas críticas junto com uma análise retrospectiva, releva que as bases para a guerra cibernética moderna foram lançadas décadas antes, através
+da combinação de sabotagem estatal, ataques insiders threats (ocorrem quando pessoas com acesso legítimo aos sistemas de uma empresa, como funcionários, ex-funcionários ou prestadores de serviço, comprometem a segurança.)
+e a vulnerabilidade crescente de sistemas legados à internet. 
+
+Com base nos dados levantados pelo RISI (Repository of Industrial Security Incidents) e pelo Significant Multi-domain Incidents against Critical Infrastructure (SMICI), eles oferecem uma visão onde a maioria dos incidentes
+registrados até o início dos anos 2000 não possuíam sofisticação tecnológica de malwares caracterizado como worms, é um tipo de malware que se autorreplica e se propaga de forma autônoma pelas redes de computadores sem
+haver, necessariamente, de alguma ação da vítima, mas o seu foco era destinado a exploração de comandos legítimos por indivíduos com acesso privilegiado. 
+
+Um exemplo de ataque cibernético "pré-Stuxnet" é o caso do Maroochy Water Breach, na qual aconteceu na Austrália em 2000. Um ex-funcionário descontente utilizou um notebook e um transmissor de rádio para invadir o sistema de controle
+de esgoto da região de Maroochy Shire. Ao se passar por uma estação de controle legítima, ele inseriu comandos que resultaram no despejo de milhões de litros de esgoto bruto em parques e rios causando a morte da vida marinha local
+e um cheiro intolerável (ABRAMS et al, 2008). Com isso, e outros ataques cibernéticos que ocorreram na mesma época, demonstrou que o foco do ataque não era na complexidade de um código malicioso, mas na fragilidade dos protocolos
+de comunicação sem fio e na falta de autenticação robusta nos sistemas SCADA, e que infelizmente a dependência digital crescia em um ritmo muito superior em comparação com a maturidade da defesa cibernética industrial. 
+
+A descoberta do Stuxnet não apenas revelou a vulnerabilidade das infraestruturas críticas, mas serviu como um catalisador para uma nova era de metodologias de ataques. A partir deste, as metodologias desenvolvidas posteriormente
+priorizaram a furtividade e a exploração de funções legítimas para causar danos. 
+
+1.3.2 Ataques "pós-Stuxnet" 
+
+Uma das mudanças mais significativas nas metodologias de ataque "pós-Stuxnet" foi a transição de malware rígidos para frameworks modulares. O Industroyer (também conhecido como CrashOverride) exemplifica essa mudança. Diferente
+do Stuxnet, que tinha como foco ataques com zero-days (é uma falha de segurança em um software, hardware ou firmware que é desconhecida pelos desenvolvedores ou por qualquer pessoa capaz de mitigá-la.) complexas, este ataque foi
+projetado para se integrar com os protocolos padrão da indústria elétrica na Ucrânia (como a IEC 60870-5-104 e IEC 61850 na qual são padrões internacionais de arquitetura de comunicação para a automação de sistemas de energia, principalmente
+subestações elétricas. (ANDRÉ, 2022). Ou seja, a metodologia dele consistiu em se passar por comandos legítimos desses protocolos com o intuito de causar paralisação na infraestrutura crítica. Além do Industroyer, ataques como o
+Triton (2017) (TRELLIX, 2020), Colonial Pipeline (2021) (INSURICA, 2024) e o Pipedream (2022) (TXONE, 2022), tinham como foco em estratégias como "Living-off-the-land" (conhecida também pelo acrônimo "LotL", o criminoso utilliza
+ferramentas da própria infraestrutura como PowerShell ou WMI (Windows Management Instrumentation) ao invés de malwares próprios para reduzir os riscos de detecção da invasão) para se infiltrar na instalação antes de qualquer ação danosa. 
+
+1.3.3 Evolução da segurança x evolução dos ataques 
+
+Antes do Stuxnet, a grande maioria dos protocolos industriais, como o Modbus original e o EtherNet/IP, operavam sem qualquer recurso de criptografia ou autenticação. A resposta da indústria foi o desenvolvimento de versões seguras, como
+o Modbus Security e o OPC UA (Open Platform Communications Unified Architecture). Essas medidas foram extremamente eficientes em mitigar ataques triviais de "man-in-the-middle", uma categoria de ataque onde o criminoso intercepta de forma
+não autorizada os dados de uma transmissão entre cliente e servidor para captura e manipulação de dados, e injeção de comandos simples que caracterizavam o período "pré-Stuxnet". Em ambientes onde esses novos protocolos foram implementados
+e configurados corretamente, a superfície de ataque para comandos não autorizados foi drasticamente reduzida. Porém, do ponto de vista puramente técnico e normativo, houve um avanço significativo que elevou a barreira de entrada para potenciais
+atacantes. 
+
+Enquanto os protocolos tentavam se tornar mais seguros, os atacantes em paralelo também evoluíram suas metodologias. Malwares modernos como o Colonial Pipeline (2016) e o Pipedream (2022) demonstraram que, mesmo sem explorar vulnerabilidades
+zero days nos protocolos (semelhantemente como foi com o Stuxnet), é possível causar danos ao utilizar as funções legítimas do sistema contra ele mesmo. Se o protocolo permite desligar um disjuntor (mesmo que de forma autenticada), um
+atacante que comprometa as credenciais válidas de um operador através de engenharia social (uma metodologia de ataque que geralmente envolve manipulação psicológica com o propósito de adquirir informações sensíveis como
+dados bancários, pessoais, credenciais de acesso ou até mesmo induzir as vítimas a realizar ações específicas) ou táticas de "Living-off-the-Land" poderá realizar o ataque sem violar as camadas de segurança do protocolo. 
+
+Além disso, a codependência entre TI (Tecnologia da Informação) e OT (Tecnologia Operacional) abriu novos vetores de ataque. Em situações de ataques à rede corporativa (TI), o ambiente de operação industrial sofre de uma interrupção
+forçada por precaução ou dependência administrativa, como foi visto no ataque Colonial Pipeline. Com isso, a segurança do protocolo industrial se torna irrelevante se a infraestrutura de suporte a faturamento, logística e monitoramento
+for comprometida. 
+
+1.4 Segurança Relacionada Com A Indústria 4.0 
+
+A relação entre a criptografia e os sistemas SCADA aconteceu por conta da evolução da Indústria 4.0. Historicamente, dado aos ambientes air-gapped que dependiam de protocolos proprietários, criavam uma barreira de segurança baseada em
+isolamento na rede e protocolos exclusivos na qual causava uma falsa sensação de segurança. No entanto, há a necessidade contemporânea de integrar o chão de fábrica com as redes corporativas e à internet expôs as infraestruturas críticas
+contra ameaças cibernéticas sofisticadas. E nesse cenário, a criptografia tornou-se a principal ferramenta de defesa para proteger a comunicação entre os centros de controle e os dispositivos de campo, mitigando riscos de
+interceptação e manipulação de comandos por agentes maliciosos.  
+
+Nesse contexto de digitalização e interconectividade, a segurança dos sistemas SCADA emerge como um pilar fundamental para a concretização da Indústria 4.0. A visão de fábricas inteligentes, caracterizadas por automação avançada,
+o crescimento da Internet das Coisas Industrial (IIoT) e a análise de dados em tempo real, depende intrinsecamente de uma base de segurança cibernética sólida. E a criptografia transcende a função modesta de ferramenta de
+proteção, tornando-se um elemento estratégico e essencial para o avanço e a sustentabilidade da quarta revolução industrial. Ao proteger a comunicação e a integridade dos dados transmitidos dentro e entre os sistemas SCADA e os dispositivos
+IIoT (Industrial Internet of Things), a criptografia não apenas reduz riscos de acesso não autorizado, manipulação ou sabotagem, mas também viabiliza a confiança necessária para a operação de sistemas ciber-físicos complexos.
+Em contrapartida, sem a garantia de que os dados estejam autênticos, confidenciais e íntegros, a automação avançada e a tomada de decisões baseada em dados em tempo real seriam inviáveis, comprometendo a eficiência e a resiliência das fábricas
+inteligentes. 
+
+E dado ao cenário, o objetivo desse trabalho é explicitar as vulnerabilidades de segurança que os protocolos industriais legados apresentam e identificar como a criptografia pode mitigar ataques cibernéticos nas infraestruturas críticas. 
+
+2 OBJETIVOS 
+
+2.1 Objetivo Geral 
+Analisar a fragilidade dos protocolos legados em sistemas SCADA frente a ameaças cibernéticas modernas em infraestruturas críticas e propor uma abordagem de segurança baseada na aplicação de criptografia nas transmissões para mitigar esses riscos. 
+
+2.2 Objetivos Específicos 
+1. Identificar os principais protocolos de comunicação legados utilizados em sistemas SCADA e suas vulnerabilidades inerentes à ausência de mecanismos de segurança integrados. 
+2. Avaliar os potenciais impactos (e.g., latência, desempenho, complexidade de implementação) da aplicação da criptografia proposta em um cenário simulado ou estudo de caso de sistema SCADA. 
+
+3 METODOLOGIA 
+
+Esta pesquisa caracteriza-se como um estudo de natureza qualitativa e exploratória, fundamentada em um levantamento bibliográfico e documental sobre a evolução da cibersegurança em infraestruturas críticas, junto com a evolução
+dos malwares, e os impactos técnicos da criptografia. 
+
+3.1 Coleta de Dados e Fontes de Informação 
+
+A estratégia de levantamento de dados foi fundamentada em três eixos fundamentais: 
+
+- Repositório de Incidentes: Análise de vulnerabilidades e ataques históricos precedentes ao marco do Stuxnet, utilizando bases especializadas como o RISI
+(Repository of Industrial Security Incidents) e o SMICI (Significant Multi-domain Incidents against Critical Infrastructure); 
+
+- Relatórios Técnicos e Setoriais: Compilação de indicadores estatísticos provenientes de instituições de referência (CENSINET, Claroty, FORTINET e KPMG). Esses dados embasam a análise sobre o
+binômio desempenho de hardware e latência, além de parâmetros de conformidade industrial; 
+
+- Normatização e Legislação: O conhecimento de normas foi composto pelas normas ISA/IEC 62443. NIST 800-82 e as diretrizes do GSI/PR no contexto brasileiro. 
+
+3.2 Critérios de Seleção dos Casos de Estudo 
+
+Visando ilustrar a evolução das ameaças focadas nas infraestruturas críticas, os incidentes em questão foram selecionados em dois critérios: 
+- Marcos Tecnológicos: Identificação de eventos que sinalizam a transição entre ataques baseados em falhas humanas e insiders threats para o surgimento de códigos maliciosos de alta complexidade, caracterizados pela furtividade e potencial destrutivo; 
+- Impacto Sistêmico: Foco em ataques que exploraram as vulnerabilidades intrínsecas à convergência entre Tecnologia da Informação (TI) e Tecnologia de Operação (TO). 
+
+3.3 Procedimentos de Análise 
+
+Os dados obtidos foram submetidos a uma abordagem comparativa, concentrando-se nas seguintes bases analíticas: 
+- Dualidade entre Criptografia e Limitações de Hardware: Avaliação do impacto gerado pelas demandas de confidencialidade e integridade sobre o ecossistema legado. Analisou-se como a sobrecarga computacional de
+algoritmos criptográficos afeta o processamento interno de CLPs e RTUs, mensurando o risco real de introdução de latência em barramentos de comunicação industrial em tempo real; 
+- Alinhamento Estratégico entre Cibersegurança, ESG e ODS: Investigação da influência entre a resiliência cibernética das infraestruturas críticas e os critérios da ESG (Environmental, Social, and Governance), correlacionando
+a proteção destes ambientes com as ODS (Objetivos de Desenvolvimento Sustentável) da ONU (Organização das Nações Unidas). 
+
+ 4 RESULTADOS E DISCUSSÕES 
+
+4.1 Desafios De Implementação da Criptografia 
+
+Apesar da existência dos protocolos seguros, a implementação deles ainda é um desafio dado a alguns desafios técnicos como limitações de hardware quanto a latência que as medidas de segurança causam e o crescimento
+exponencial das metodologias de ataque. 
+
+A eficiência dos dispositivos de campo é severamente limitada pela longevidade dos dispositivos ativos nas infraestruturas críticas. Os equipamentos como controladores lógicos programáveis (CLP's) e unidades terminais
+remotas (RTU's) foram fabricados com ciclos de vida para ultrapassarem a faixa de 10 a 15 anos (GUIDE, 2023). Como resultado, muitas infraestruturas críticas continuam operando com protocolos legados ou, pior, implementam
+protocolos modernos (como o OPC UA) com as funcionalidades de segurança desativadas para garantir a interoperabilidade ou reduzir a latência. No artigo "Easing the Conscience with OPC UA: An Internet-Wide Study on Insecure Deployments" menciona
+que entre os 1.114 servidores estudados no ano de 2020, 92% apresentavam falhas de configuração de segurança. Entre eles, 24% apresentaram funções de segurança desativadas, 25% utilizavam protocolos legados sem segurança integrada
+e 24% apresentam sem controle de acesso. Enfatizando o ponto que os protocolos de transmissão das infraestruturas críticas priorizam a disponibilização dos dados acima de qualquer coisa. 
+
+Um estudo desenvolvido pela CENSINET apresenta uma matéria realizada no setor hospitalar de como a criptografia impacta o desempenho do sistema das infraestruturas críticas. Dado a instituição, a criptografia pode aumentar
+o uso da CPU (Central Processing Unit) em 15 à 30%, retardar o armazenamento em 5 à 20% e adicionar latência de 50 à 100ms nas redes (E para infraestruturas onde se opera na faixa de 300 a 19200 bits por segundo (WRIGHT, 2004), um acréscimo
+de 50 à 100 milissegundos pode resultar, no pior dos cenários, um acidente industrial). 
+
+4.2 Normas De Segurança Para As Infraestruturas Críticas 
+
+A proteção das infraestruturas críticas é sustentada por um conjunto sólido de normas e guias de boas práticas desenvolvidos para amenizar os riscos cibernéticos em ambientes OT. Porém, a existência dessas normas
+não garante a sua aplicação universal nas infraestruturas críticas. Infelizmente é revelado uma lacuna significativa no cenário real entre a conformidade teórica das normas e a resiliência operacional impulsionada por desafios
+técnicos, econômicos e culturais. 
+
+Atualmente, a principal referência mundial para a segurança de sistemas de automação e controle industrial é a série de normas ISA/IEC 62443. Esta norma estabelece um framework que fornece requisitos e processos para implementar
+e manter a segurança cibernética em IACS (Sistemas de Automação e Controle Industrial) na qual são divididos em quatro etapas para a promoção de um padrão de segurança nas
+IC's. Sendo elas a "Avaliação de Riscos", "Definição e Design", "Implementação" e "Manutenção e Monitoramento". 
+
+Complementarmente, a família de normas americana NIST 800, especificamente a NIST 800-82, se destaca por oferecer diretrizes detalhadas sobre como adaptar controles de segurança de TI levando em consideração a realidade da OT, priorizando
+a segurança física e a continuidade do processo (NIST, 2022).
+
+No contexto do Brasil, o órgão público responsável pelo setor de segurança é o GSI/PR (Gabinete de Segurança Institucional da Presidência da República) na qual ele desempenha um papel central através da política nacional de segurança
+nas infraestruturas críticas, estabelecendo diretrizes estratégicas que as organizações devem seguir (GSI/PR, 2024). 
+
+Apesar da compreensão dessas normas, a adoção dessas instruções é barrada por desafios severos. Um deles é a complexidade de implementação de controles de segurança em sistemas legados que não possuem condições de hardware para
+suportar a criptografia ou a autenticação moderna. Uma pesquisa desenvolvida pela Claroty indica que, embora a conscientização através das normas tenha crescido, uma parcela significativa ainda sofre dificuldades para sair da
+fase de "Avaliação de Riscos" para a fase de "Implementação". Muitas vezes, as empresas adotam as normas de forma parcial focando apenas nos controles que não impactam a disponibilidade operacional, deixando brechas cibernéticas críticas
+que podem causar prejuízos na cadeia de suprimentos ou até danos em nível nacional (FORTINET, 2024).  
+
+Além disso, no Brasil, essa divisão é ainda mais heterogênea. Enquanto há setores altamente regulados e que seguem as diretrizes à risca, como o elétrico e o financeiro, apresentando níveis mais maduros de conformidade
+devido às exigências de órgãos públicos, como a ANEEL (Agência Nacional de Energia Elétrica) através de normas como a n º 964/2021 e o BACEN (Banco Central do Brasil) por meio da resolução 85/2021, outros setores essenciais para o país, como
+saneamento e manufatura, operam com níveis de segurança cibernética consideravelmente inferiores (YANIR, 2023). A falta de profissionais qualificados que dominem tanto a engenharia de processos quanto a cibersegurança é comumente a razão
+da principal barreira para a implementação rigorosa das boas práticas descritas pelas normas internacionais. 
+
+4.3 A Relação da Criptografia com as ODS's e ESG's 
+
+A relação da criptografia nas infraestruturas críticas com o meio ambiente é frequentemente negligenciada dado ao alto custo e a complexidade de implementação, mas ela é fundamental para a resiliência do planeta e para o cumprimento de agendas
+globais de sustentabilidade. Esta conexão se destaca em duas frentes principais, a prevenção de desastres ambientais por meio da integridade e preservação dos sistemas e o impacto energético direto causado pelas operações criptográficas.
+Ademais, com a proteção das infraestruturas críticas contra sabotagens e ataques cibernéticos por meio do uso da criptografia, é criado uma lacuna crítica contra incidente que poderiam resultar em vazamentos químicos, explosões ou poluição
+dos recursos fluviais (REVEALD, 2025). 
+
+No âmbito dos critérios do ESG, criado pela ONU em 2004, a cibersegurança e a criptografia são pilares da governança corporativa que impactam diretamente a esfera ambiental. A implementação de protocolos criptográficos robustos
+é cada vez mais visto como uma métrica de responsabilidade ambiental garantindo que a infraestrutura opere de forma segura e eficiente (KPMG, 2024). Além disso, existe o desafio no consumo energético com as operações com criptografia.
+Os algoritmos de criptografia pesados podem aumentar a demanda de processamento nos dispositivos de campo devido aos recursos limitados de hardware. E nesse contexto, o desenvolvimento de uma criptografia leve se destaca para equilibrar
+segurança e eficiência energética (ASLAN et al, 2020). 
+
+A ONU, em 2015, criou também 17 ODS com foco em resoluções mediante a desafios mundiais com a expectativa de realização até 2030. E a implementação da criptografia impacta diretamente as ODS 6 (Água Limpa e Saneamento),
+ODS 9 (Indústria, Inovação e Infraestrutura) e ODS 11 (Cidades e Comunidades Sustentáveis) pois a segurança proporcionada pela criptografia mantém as infraestruturas críticas estáveis e operantes fornecendo recursos essenciais para o país. 
+
+5 CONSIDERAÇÕES FINAIS 
+
+5.1 A Implementação da Criptografia Além dos Desafios 
+
+O sistema SCADA está presente em inúmeras plantas industriais atualmente. E devido a sua natureza, apresenta pontos de vulnerabilidades que, quando não corrigidos, geram riscos para oportunos ataques cibernéticos. Nesse contexto, verifica-se
+que a criptografia não é somente um detalhe técnico e sim uma questão de sobrevivência estratégica. Apesar dos desafios operacionais de implementação, a criptografia prevalece como a única barreira capaz de garantir a integridade e a autenticidade
+dos comandos dentro das infraestruturas críticas. 
+
+Os desafios técnicos como limitação de hardware, largura de banda e ininterrupção das operações, sendo um processo onerosos. O surgimento de tecnologias como a criptografia leve, junto com avanço dos SIS (Sistemas Instrumentados de Segurança), prova
+que a indústria está evoluindo para superar suas próprias limitações (NIST, 2022). Dessa maneira, a criptografia entra não somente como uma solução de cibersegurança, porém é um componente estrutural, que, permite que todas as outras medidas de
+segurança operem. 
+
+5.2 Proposta de estudos futuros para o desenvolvimento de criptografia leve 
+
+Dado a todo o contexto de vulnerabilidades nos sistemas dentro das infraestruturas críticas apresentado nesse trabalho, sugere-se o desenvolvimento de um protocolo de criptografia leve destinado não somente à aplicação em sistemas SCADA
+como também a toda aplicação onde a disponibilidade é a maior prioridade mantendo a confidencialidade e a integridade dos dados. 
