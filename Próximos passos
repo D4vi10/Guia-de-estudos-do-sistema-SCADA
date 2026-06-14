@@ -1,0 +1,8 @@
+# Ideias de continuação do Projeto Integrador #
+
+Hoje, dia 13/06, apresentei o meu Projeto Integrador e a banca sugeriu um ponto que poderia reforçar ainda mais o trabalho. Consiste em uma simulação, utilizando o Cisco Packet Tracer ou uma ferramenta paga, para comprovar que 
+a implementação de criptografia leve pode interferir, mesmo que sutilmente na faixa de 50 a 100ms, na latência do sistema SCADA. E eventualmente desenvolver, com mais estudos e certificações, uma criptografia que não consuma tanto
+os recursos limitados de hardware dos dispositivos de campo e que, proporcionalmente, promova segurança nas transmissões dentro do sistema SCADA.
+
+Uma outra ideia, que tive no caminho de casa após as apresentações, é a integração da IA no sistema SCADA. Em específico no nível 2 para a coleta de dados e geração de gráficos em tempo real e prevenindo o sistema SCADA de falhas operacionais.
+Ou até mesmo estudar sobre a aplicaÇão do SIEM em sistema SCADA, visando o equilíbrio entre disponibilidade e confidencialidade dos dados.
